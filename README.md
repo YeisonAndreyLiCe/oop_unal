@@ -1,77 +1,38 @@
-# AmazonUnal
+# PayManager
 
-Diagrama UML: https://drive.google.com/file/d/1v7ovKShlE6WO656TTvB5s7eh_KFZIz5b/view?usp=drive_link
+PayManager is a system designed to handled the creation, subscription and
+charge of plans. Plans could be services, products or any other type of
+subscription. The system is designed to allows administrators to directly
+supervise and manage billing and collection processes, providing greater
+control over operations, admins will also be able of creating catalogs and
+adding plans and subscription to them. User will be able to subscribe to plans;
+in order to be able of adding subscriptions a user should have credit card
+information added to their account. Credit cards information will be stored in
+a gateway specify by the admin, the admin should add the keys
+(Public and Private) provided by the payment gateway in the system so the system
+will be able of communicate with the gateway, currently we support the following
+gateways: Stripe, Paypal, MercadoPago, ePayco, Wompy, PayU and E-collect.
+Gateways will also be used to process the transaction of charges to the user
+according to the plan subscribed.
 
-## Descripción
+## Technical Details
 
-Este proyecto permite a los usuarios buscar productos y comprar productos. Igualmente se permite la
-adición de productos al carrito de compras y la eliminación de productos del carrito de compras.
-Tendremos un manejo de inventario que verificará disponibilidad, precios y cantidades de los productos.
-Los usuarios que quieran interactual con la aplicación deberán registrarse y loguearse.
-Adicionalmente se podrá agregar comentarios a los productos y calificarlos.
+- [Repository](https://www.youtube.com/watch?v=Wiy54682d1w) as pattern
+to access and save data.
 
-Por Facilidad Tendremos un usuario ya registrado que podrá llevar a cabo todas las acciones de la aplicación.
+- We will use ids to identify users, plans, subscriptions, catalogs and
+charges. The system will be able to handle multiple catalogs, plans and
+subscriptions. The system will also save information of the transactions.
 
-No vamos a usar bases de datos en su lugar usaremos archivos json para almacenar la información en la carpeta data.
+- We will use payments gateways to store credit card information and process
+the charges to the users.
 
-<!-- json user example -->
+Note: Since this is a academic project wi will simulate all external iterations
+with the payment gateways.
 
-Ejemplo de un usuario:
+- As alternative to directory and file based storage we should use SQLite
+(missing validation of requirements).
 
-```json
-{
-  "id": "jonhdoe@gmail.com",
-  "name": "Jonh Doe",
-  "password": "a_very_secure_password",
-  "address": {
-    "street": "Calle 123",
-    "city": "Medellín",
-    "country": "Colombia"
-  },
-  "paymentMethod": {
-    "card": "1234-1234-1234-1234",
-    "expiration": "12/23",
-    "cvv": "123"
-  },
-  "paymentsHistory": [
-    {
-      "id": "123",
-      "date": "2021-10-10",
-      "products": [
-        {
-          "id": "123",
-          "name": "Product 1",
-          "price": 1000,
-          "quantity": 2
-        },
-        {
-          "id": "124",
-          "name": "Product 2",
-          "price": 2000,
-          "quantity": 1
-        }
-      ],
-      "total": 3000
-    }
-  ]
-}
-```
+### Useful Links
 
-<!-- json product example -->
-
-Ejemplo de un producto:
-```json
-{
-  "id": "123",
-  "name": "Product 1",
-  "price": 1000,
-  "quantity": 10,
-  "comments": [
-    {
-      "user": "jondoe@gmail.com",
-        "comment": "This is a great product",
-        "rating": 5
-    }
-    ]
-}
-```
+- [Design Patterns](https://www.youtube.com/watch?v=JI_THVXPToQ)
